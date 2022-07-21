@@ -6,7 +6,7 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 var session = require('express-session')
 var flash = require('connect-flash');
-
+const PORT = process.env.PORT || 1010;
 const { MongoClient } = require('mongodb');
 app.use(session({
     secret: 'keyboard cat',
@@ -201,6 +201,6 @@ async function main() {
 
 main().catch(console.error);
 
-app.listen(1010, () => {
+app.listen(PORT, () => {
     console.log("listening on port 1010");
 })
