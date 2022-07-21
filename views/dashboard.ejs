@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/dashboardstyle.css">
+    <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
+
+    <script src="https://use.fontawesome.com/cffeedabf1.js"></script>
+
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="brand-title">
+            <h1>SOCIONODES</h1>
+        </div>
+
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="/logout">Log Out</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="useract">
+        <!-- Profile Card -->
+
+
+        <div class="card-container">
+            <img class="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" />
+            <h3>
+                <%= user.name %>
+            </h3>
+            <h6>
+                <%= user.email %>
+            </h6>
+            <p>User interface designer and <br /> front-end developer</p>
+            <div class="buttons">
+
+                <a style="color: inherit" href=<%=user.github %>><i class="fa-2x fa fa-github"></i></a>
+
+                <a style="color: inherit" href=<%=user.linkedin %>><i class="fa-2x fa">&#xf08c;</i></a>
+
+                <a style="color: inherit" href=<%=user.instagram %>><i class="fa-2x fa  fa-instagram"></i></a>
+            </div>
+            <div class="skills">
+                <h6>Skills</h6>
+                <ul>
+                    <li>UI / UX</li>
+                    <li>Front End Development</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>React</li>
+                    <li>Node</li>
+                </ul>
+
+            </div>
+        </div>
+        <!-- ----------------------------------------------------------------------------------------------- -->
+        <!-- Create Post -->
+
+        <form class="form" action="/userpost/<%= user._id %>" method="post">
+            <div class="title">Create Post</div>
+
+            <div class="input-container ic2">
+                <input required="true" maxlength="100" id="email" class="input" type="text" name="message"
+                    placeholder=" " />
+                <div class="cut cut-short"></div>
+                <label for="email" class="placeholder">What's on your mind ?</label>
+
+            </div>
+            <button type="submit" class="submit">submit</button>
+
+        </form>
+
+        <!-- ---------------------------------------All Posts-------------------------------------------------------- -->
+    </div>
+    <div id="marq">
+        <marquee scrollamount="15">
+            <p>LATEST NEWS AND POSTS!&nbsp;&nbsp;&nbsp;&nbsp;LATEST NEWS AND POSTS!&nbsp;&nbsp;&nbsp;&nbsp;LATEST NEWS
+                AND POSTS!&nbsp;&nbsp;&nbsp;&nbsp;LATEST NEWS AND POSTS!
+
+            </p>
+
+
+        </marquee>
+    </div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div class="posts">
+        <% for(var i=0; i < allposts.length; i++) { %>
+            <div class="wrapper">
+                <div class="container">
+                    <img src="https://i.imgur.com/fR2RIvG.jpg" alt="" class="profile-img">
+
+                    <div class="content">
+                        <div class="sub-content">
+                            <h1>
+                                <%= allposts[i].user.name %>
+                            </h1>
+                            <span>
+                                <%= allposts[i].user.email %>
+                            </span>
+                            <p>
+                                <%= allposts[i].post %>
+                            </p>
+                        </div>
+                        <div class="data">
+                            <a style="color: inherit" href=<%=allposts[i].user.github %>><i
+                                    class="fa-2x fa fa-github"></i></a>
+
+                            <a style="color: inherit" href=<%=allposts[i].user.linkedin %>><i
+                                    class="fa-2x fa">&#xf08c;</i></a>
+
+                            <a style="color: inherit" href=<%=allposts[i].user.instagram %>><i
+                                    class="fa-2x fa  fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="btn">follow me</div>
+                </div>
+            </div>
+            <% } %>
+
+    </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
