@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="google-signin-client_id"
-        content="396918042087-9ejg6k7n4i7etgc50jv1lap0oergma7a.apps.googleusercontent.com">
+
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <script src="https://use.fontawesome.com/cffeedabf1.js"></script>
@@ -57,8 +56,8 @@
 
                 </div>
 
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
+                <div class="g_id_signin" data-type="standard"></div>
             </form>
         </div>
 
@@ -125,7 +124,13 @@
         </div>
 
     </footer>
-    <script src="/assets/homejs.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <div id="g_id_onload" data-client_id="134890349659-3857bb1cmggl3ntqe368bqtrt3j0cjj6.apps.googleusercontent.com"
+        data-callback="onSignIn">
+        </div>
+        <script src="/assets/homejs.js"></script>
+
+    </div>
 
 
 </body>

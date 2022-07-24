@@ -41,7 +41,7 @@ async function main() {
 
     const { OAuth2Client } = require('google-auth-library');
 
-    const CLIENT_ID = '396918042087-9ejg6k7n4i7etgc50jv1lap0oergma7a.apps.googleusercontent.com';
+    const CLIENT_ID = '134890349659-3857bb1cmggl3ntqe368bqtrt3j0cjj6.apps.googleusercontent.com';
     const gclient = new OAuth2Client(CLIENT_ID);
 
     app.post('/glogin', (req, res) => {
@@ -184,6 +184,9 @@ app.post('/userpost/:id', async (req, res) => {
 
 app.get('/', (req, res) => {
     res.render('home.ejs')
+})
+app.get('*',(req, res)=>{
+    res.render('home.ejs');
 })
 
 

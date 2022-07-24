@@ -35,8 +35,9 @@ const text = document.querySelector('.text p');
                 `<span style="transform:rotate(${i * 8}deg)">${char}</span>`
         ).join("")
 
-function onSignIn(googleUser) {
-  var id_token = googleUser.getAuthResponse().id_token;
+function onSignIn(GoogleUser) {
+  // var id_token = GoogleUser.getAuthResponse(GoogleUser)	;
+  console.log(gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse);
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/glogin');
   xhr.setRequestHeader('Content-Type', 'application/json');
