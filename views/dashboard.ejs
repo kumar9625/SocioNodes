@@ -37,9 +37,8 @@
     <div class="useract">
         <!-- Profile Card -->
 
-
         <div class="card-container">
-            <img class="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" />
+            <img id = "profile" class="round" width=  150 height="150"   src = <%= user.profileimg %>  alt="user" />
             <h3>
                 <%= user.name %>
             </h3>
@@ -103,7 +102,7 @@
         <% for(var i=0; i < allposts.length; i++) { %>
             <div class="wrapper">
                 <div class="container">
-                    <img src="https://i.imgur.com/fR2RIvG.jpg" alt="" class="profile-img">
+                    <img src=<%= allposts[i].user.profileimg %> alt="" class="profile-img">
 
                     <div class="content">
                         <div class="sub-content">
@@ -186,6 +185,10 @@
         </div>
 
     </footer>
+    <script>
+            document.getElementById('profile').src = "https://avatars.dicebear.com/api/micah/" +  user.name  + ".svg";
+
+    </script>
 
 
 

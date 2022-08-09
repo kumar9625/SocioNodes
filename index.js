@@ -108,6 +108,7 @@ async function main() {
             name: req.body.txt,
             email: req.body.email,
             pass: req.body.pswd,
+            profileimg: `https://avatars.dicebear.com/api/micah/${req.body.txt}.svg`,
             password: hash,
             github: req.body.github,
             linkedin: req.body.linkedin,
@@ -121,73 +122,69 @@ async function main() {
             res.status(200).json({ message: 'creating user failed!' })
         });
         console.log(user)
-        passport.authenticate("local")(
-            req, res, function () {
-                req.flash('success', 'You have logged in')
-                res.redirect('/dashboard/' + user._id);
-            });
+        res.redirect('/dashboard/' + user._id);
     });
-app.post('/login', async (req, res) => {
-    const password = req.body.pswd;
-    const user = await db.findOne({ email: req.body.email });
-    console.log(user);
-    const validpassword = await bcrypt.compare(password, user.password);
-    if (validpassword) {
-        res.redirect('/dashboard/' + user._id)
+    app.post('/login', async (req, res) => {
+        const password = req.body.pswd;
+        const user = await db.findOne({ email: req.body.email });
+        console.log(user);
+        const validpassword = await bcrypt.compare(password, user.password);
+        if (validpassword) {
+            res.redirect('/dashboard/' + user._id)
 
 
-    } else {
-        res.send("Wrong Credentials!")
-    }
-})
-app.get('/dashboard/:id',  async (req, res) => {
-    const allposts = [];
-    query = { _id: ObjectId(req.params.id) }
-    const user = await db.findOne(query);
-    dbposts = pdb.find().forEach(
-        results => {
-            allposts.push(results);
-        }).then(() => {
-            res.render('dashboard.ejs', { user, allposts })
-        });
+        } else {
+            res.send("Wrong Credentials!")
+        }
+    })
+    app.get('/dashboard/:id', async (req, res) => {
+        const allposts = [];
+        query = { _id: ObjectId(req.params.id) }
+        const user = await db.findOne(query);
+        dbposts = pdb.find().forEach(
+            results => {
+                allposts.push(results);
+            }).then(() => {
+                res.render('dashboard.ejs', { user, allposts })
+            });
 
-})
-
-
-app.get('/logout', (req, res) => {
-    res.clearCookie('session-token');
-    res.redirect('/');
-})
-
-app.post('/userpost/:id', async (req, res) => {
-    query = { _id: ObjectId(req.params.id) };
-    const user = await db.findOne(query)
-    const post = {
-        post: req.body.message,
-        created_on: new Date(),
-        user
+    })
 
 
-    };
+    app.get('/logout', (req, res) => {
+        res.clearCookie('session-token');
+        res.redirect('/');
+    })
 
-    const result = await pdb
-        .insertOne(post)
-        .then(result => {
-            res
-                .redirect('/dashboard/' + req.params.id);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({ message: 'An error occurred.' });
-        });
-})
+    app.post('/userpost/:id', async (req, res) => {
+        query = { _id: ObjectId(req.params.id) };
+        const user = await db.findOne(query)
+        const post = {
+            post: req.body.message,
+            created_on: new Date(),
+            user
 
-app.get('/', (req, res) => {
-    res.render('home.ejs')
-})
-app.get('*',(req, res)=>{
-    res.render('home.ejs');
-})
+
+        };
+
+        const result = await pdb
+            .insertOne(post)
+            .then(result => {
+                res
+                    .redirect('/dashboard/' + req.params.id);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({ message: 'An error occurred.' });
+            });
+    })
+
+    app.get('/', (req, res) => {
+        res.render('home.ejs')
+    })
+    app.get('*', (req, res) => {
+        res.render('home.ejs');
+    })
 
 
 
