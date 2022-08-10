@@ -108,7 +108,7 @@ async function main() {
             name: req.body.txt,
             email: req.body.email,
             pass: req.body.pswd,
-            profileimg: `https://avatars.dicebear.com/api/micah/${req.body.txt.substr(0,4)}.svg`,
+            profileimg: `https://avatars.dicebear.com/api/avataaars/${req.body.txt.substr(0,4)}.svg?background=%230088DD`,
             password: hash,
             github: req.body.github,
             linkedin: req.body.linkedin,
