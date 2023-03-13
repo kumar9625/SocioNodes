@@ -24,9 +24,9 @@
     "google-auth-library": "^8.1.1",
     "mongodb": "^4.8.0",
     "nodemon": "^2.0.19",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "vercel": "^28.16.15"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kumar9625/SocioNodes.git"
