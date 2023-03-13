@@ -31,7 +31,7 @@ app.use(flash());
 async function main() {
     app.set('views', path.join(__dirname, '/views'));
 
-    app.use("/assets", express.static('assets'));
+    app.use(express.static('assets'));
     var ObjectId = require('mongodb').ObjectId;
     const uri = "mongodb+srv://kumar9625:mongo123@cluster0.ibswj.mongodb.net/?retryWrites=true&w=majority"
     const client = new MongoClient(uri);
