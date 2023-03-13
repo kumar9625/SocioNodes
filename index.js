@@ -186,10 +186,6 @@ async function main() {
     })
 }
 
-app.use("/", (req, res) => {
-   res.json({message: "hehy"})
-});
-
 main().catch(console.error);
 
 app.listen(PORT, () => {
