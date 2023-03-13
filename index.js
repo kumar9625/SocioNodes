@@ -186,6 +186,13 @@ async function main() {
     })
 }
 
+app.use("/", (req, res) => {
+    console.log("rendering/..............")
+    res.render("home.ejs");
+})
+
+
+
 main().catch(console.error);
 
 app.listen(PORT, () => {
