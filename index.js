@@ -32,6 +32,7 @@ app.use(flash());
 
 async function main() {
     app.set('views', path.join(__dirname, '/views'));
+    app.use("/assets", express.static('assets'));
 
     var ObjectId = require('mongodb').ObjectId;
     const uri = "mongodb+srv://kumar9625:mongo123@cluster0.ibswj.mongodb.net/?retryWrites=true&w=majority"
@@ -109,7 +110,7 @@ async function main() {
             name: req.body.txt,
             email: req.body.email,
             pass: req.body.pswd,
-            profileimg: `https://avatars.dicebear.com/api/avataaars/${req.body.txt.substr(0,4)}.svg?background=%230088DD`,
+            profileimg: `https://avatars.dicebear.com/api/avataaars/${req.body.txt.substr(0, 4)}.svg?background=%230088DD`,
             password: hash,
             github: req.body.github,
             linkedin: req.body.linkedin,
