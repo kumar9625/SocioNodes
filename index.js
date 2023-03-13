@@ -27,11 +27,11 @@ app.use(flash());
 
 
 
+app.set('views', path.join(__dirname, '/views'));
+
+app.use("/assets", express.static('assets'));
 
 async function main() {
-    app.set('views', path.join(__dirname, '/views'));
-
-    app.use("/assets", express.static('assets'));
     var ObjectId = require('mongodb').ObjectId;
     const uri = "mongodb+srv://kumar9625:mongo123@cluster0.ibswj.mongodb.net/?retryWrites=true&w=majority"
     const client = new MongoClient(uri);
@@ -185,6 +185,10 @@ async function main() {
         res.render('home.ejs');
     })
 }
+
+app.use("/", (req, res) => {
+   res.json({message: "hehy"})
+});
 
 main().catch(console.error);
 
