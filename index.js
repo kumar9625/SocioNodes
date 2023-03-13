@@ -27,11 +27,11 @@ app.use(flash());
 
 
 
-app.set('views', path.join(__dirname, '/views'));
-
-app.use("/assets", express.static('assets'));
 
 async function main() {
+    app.set('views', path.join(__dirname, '/views'));
+
+    app.use("/assets", express.static('assets'));
     var ObjectId = require('mongodb').ObjectId;
     const uri = "mongodb+srv://kumar9625:mongo123@cluster0.ibswj.mongodb.net/?retryWrites=true&w=majority"
     const client = new MongoClient(uri);
@@ -170,7 +170,8 @@ async function main() {
         const result = await pdb
             .insertOne(post)
             .then(result => {
-                res.redirect('/dashboard/' + req.params.id);
+                res
+                    .redirect('/dashboard/' + req.params.id);
             })
             .catch(err => {
                 console.log(err);
@@ -184,14 +185,23 @@ async function main() {
     app.get('*', (req, res) => {
         res.render('home.ejs');
     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
-
-app.use("/", (req, res) => {
-    console.log("rendering/..............")
-    res.render("home.ejs");
-})
-
-
 
 main().catch(console.error);
 
