@@ -170,8 +170,7 @@ async function main() {
         const result = await pdb
             .insertOne(post)
             .then(result => {
-                res
-                    .redirect('/dashboard/' + req.params.id);
+                res.redirect('/dashboard/' + req.params.id);
             })
             .catch(err => {
                 console.log(err);
@@ -185,22 +184,6 @@ async function main() {
     app.get('*', (req, res) => {
         res.render('home.ejs');
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 main().catch(console.error);
